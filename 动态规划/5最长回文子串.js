@@ -49,7 +49,7 @@ var longestPalindrome = function(s) {
 
     // 设置对角线都为true，当左右索引相同时
     let dp = Array.from({ length: len }).map(() => new Array(len).fill(false))
-
+    console.log(dp)
     for (let i = 0; i < len; i++) {
         dp[i][i] = true
     }
