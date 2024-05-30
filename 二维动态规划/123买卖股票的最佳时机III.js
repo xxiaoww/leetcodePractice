@@ -30,19 +30,22 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let dp = Array.from({ length: prices.length }).map(() => new Array(prices.length).fill(0))
-    console.log(dp)
-    for (let i = 0; i < prices.length; i++) {
-        dp[i][i] = 0
-    }
+    // let dp = Array.from({ length: prices.length }).map(() => new Array(prices.length).fill(0))
+    let profit = []
+    let max = 0
     for (let i = 1; i < prices.length; i++) {
-        for (let j = 0; j < i; j++) {
-            dp[i][j] = prices[i] - prices[j]
+        let temp = prices[i] - prices[i - 1]
+        if (temp > 0) {
+            max += temp
+        } else if (temp < 0) {
+            prices.push(max)
+            max = 0
+        }
+        if (i === prices.length - 1) {
+            prices.push(max)
         }
     }
-    for (let i = 0; i < prices.length; i++) {
-
-    }
-    console.log(dp)
+    console.log(profit)
+    return profit
 };
 maxProfit([1, 2, 3, 4, 5])
