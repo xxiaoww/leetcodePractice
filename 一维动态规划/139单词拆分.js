@@ -19,3 +19,13 @@
 
 // 输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 // 输出: false
+
+
+/**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+var wordBreak = function(s, wordDict) {
+
+};
