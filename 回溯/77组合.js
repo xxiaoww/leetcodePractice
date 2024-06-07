@@ -33,7 +33,7 @@ var combine = function(n, k) {
 
     function combine(n, k, startIndex) {
         if (path.length === k) {
-            res.push(path)
+            res.push([...path])
             return
         }
         for (let i = startIndex; i <= n - (k - path.length) + 1; i++) {
