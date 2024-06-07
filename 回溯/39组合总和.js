@@ -29,6 +29,8 @@
  * @param {number} target
  * @return {number[][]}
  */
+// 根据回溯三部曲，一定要记录开始的索引，这样是为了防止重复计算
+
 var combinationSum = function(candidates, target) {
     let res = []
     let path = []
