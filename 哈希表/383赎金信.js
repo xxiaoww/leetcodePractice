@@ -47,6 +47,6 @@ var canConstruct = function(ransomNote, magazine) {
                 return false
             }
     }
-    return false
+    return true
 
 };
