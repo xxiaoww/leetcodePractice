@@ -18,72 +18,58 @@ class Node {
 
 function createTree(str) {
     // 在此处书写你的代码
-
+    // 根节点
     let root = null
         // 记录父节点
     let stack = []
-        // 根节点
+        // 临时存储节点的值
+    let temp = ''
 
     // 判断遇到的字符串
     for (let i = 0; i < str.length; i++) {
         let char = str[i]
+            // 证明先前记录的节点有子节点
         if (str.charAt(i) === '(') {
-            stack.push(root)
-            root = null
-        } else if (str.charAt(i) === ')') {
-            // 子树创建完成，添加到父节点
-            let parent = stack.pop()
-            parent.children.push(root)
-                // 重定向
-            root = parent
-        } else if (str.charAt(i) === ',') {
-
-        } else {
-            let ch = str.charAt(i) + str.charAt(i + 1)
-            i = i + 1
-            let node = new Node(ch)
-                // 根节点为空
-            if (root === null) {
-                root = node
-            } else {
-                root.addChildren(node)
+            if (temp) {
+                let node = new Node(temp)
+                temp = ''
+                    // 根节点
+                if (!root) {
+                    root = node
+                }
+                // 判断栈
+                if (stack.length) {
+                    stack[stack.length - 1].addChildren(node)
+                }
+                // 加入栈
+                stack.push(node)
             }
-        }
+        } else if (str.charAt(i) === ')') {
+            if (temp) {
+                let node = new Node(temp);
+                temp = '';
+                if (stack.length) {
+                    stack[stack.length - 1].addChildren(node);
+                }
+            }
+            stack.pop();
 
+        } else if (str.charAt(i) === ',') {
+            if (temp) {
+                let node = new Node(temp)
+                temp = ''
+                if (stack.length) {
+                    stack[stack.length - 1].addChildren(node);
+                }
+            }
+        } else {
+            temp += char
+        }
     }
     return root.toString()
 }
 
-// function createTree(str) {
-//     let root = null;
-//     let stack = [];
 
-//     for (let i = 0; i < str.length; i++) {
-//         let char = str[i];
-//         if (str.charAt(i) === '(') {
-//             // root作为父节点，推入栈中
-//             stack.push(root);
-//             root = null
-//         } else if (str.charAt(i) === ')') {
-
-//             let parent = stack.pop();
-//             parent.children.push(root);
-//             root = parent;
-//         } else if (str.charAt(i) === ',') {
-//             // No action needed
-//         } else {
-//             let ch = str.charAt(i) + str.charAt(i + 1);
-//             i = i + 1;
-//             let node = new Node(ch);
-//             if (root === null) {
-//                 root = node;
-//             } else {
-//                 root.addChildren(node);
-//             }
-//         }
-//     }
-//     return root.toString();
-// }
 
 let res = createTree(
     "AA(BB(EE,FF(MM),GG),CC(HH(NN),II(OO,PP),JJ),DD(KK(QQ),LL))"
