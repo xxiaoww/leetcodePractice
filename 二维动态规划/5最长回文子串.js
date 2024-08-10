@@ -65,7 +65,6 @@ var longestPalindrome = function(s) {
                     dp[i][j] = dp[i + 1][j - 1]
                 }
             }
-
             // 只要dp[i][j]为true就可以记录maxlen和begin
             if (dp[i][j] && j - i + 1 > maxlen) {
                 maxlen = j - i + 1
