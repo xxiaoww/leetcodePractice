@@ -24,19 +24,16 @@ function createTree(str) {
     let stack = []
         // 临时存储节点的值
     let temp = ''
-
-    // 判断遇到的字符串
+    let node
+        // 判断遇到的字符串
     for (let i = 0; i < str.length; i++) {
         let char = str[i]
             // 证明先前记录的节点有子节点
         if (str.charAt(i) === '(') {
             if (temp) {
-                let node = new Node(temp)
+                // let node = new Node(temp)
                 temp = ''
-                    // 根节点
-                if (!root) {
-                    root = node
-                }
+
                 // 判断栈
                 if (stack.length) {
                     stack[stack.length - 1].addChildren(node)
@@ -46,7 +43,7 @@ function createTree(str) {
             }
         } else if (str.charAt(i) === ')') {
             if (temp) {
-                let node = new Node(temp);
+                // let node = new Node(temp);
                 temp = '';
                 if (stack.length) {
                     stack[stack.length - 1].addChildren(node);
@@ -56,7 +53,7 @@ function createTree(str) {
 
         } else if (str.charAt(i) === ',') {
             if (temp) {
-                let node = new Node(temp)
+                // let node = new Node(temp)
                 temp = ''
                 if (stack.length) {
                     stack[stack.length - 1].addChildren(node);
@@ -64,9 +61,19 @@ function createTree(str) {
             }
         } else {
             temp += char
+            if (str[i + 1] === '(' || str[i + 1] === ')' || str[i + 1] === ',' || str.length === i + 1) {
+                node = new Node(temp)
+                    // 根节点
+                if (!root) {
+                    root = node
+                }
+            }
         }
     }
-    return root.toString()
+    // if (!root) {
+    //     root = new Node(temp)
+    // }
+    return root
 }
 
 
@@ -75,3 +82,11 @@ let res = createTree(
     "AA(BB(EE,FF(MM),GG),CC(HH(NN),II(OO,PP),JJ),DD(KK(QQ),LL))"
 );
 console.log("" + res);
+let re = createTree(
+    "A"
+);
+console.log(re)
+    // let res = createTree(
+    //     "A(B(E,F(M),G),C(H(N),I(O,P),J),D(K(Q),L))"
+    // );
+    // console.log("" + res);

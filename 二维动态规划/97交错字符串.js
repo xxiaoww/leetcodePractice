@@ -43,7 +43,6 @@ var isInterleave = function(s1, s2, s3) {
     dp[0][0] = true
     for (let i = 0; i <= s1.length; i++) {
         for (let j = 0; j <= s2.length; j++) {
-
             if (i > 0) {
                 let p = i + j - 1
                 console.log(p)
