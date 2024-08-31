@@ -12,6 +12,7 @@
  */
 var mergeTwoLists = function(list1, list2) {
     let dom = new ListNode()
+    // 哨兵节点
     let dommy = dom
     while (list1 !== null && list2 !== null) {
         if (list1.val < list2.val) {
